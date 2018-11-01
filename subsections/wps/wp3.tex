@@ -1,0 +1,10 @@
+
+We will implement our tool in a usable piece of software which can be integrated in several different scenarios. 
+We first discuss three integration scenarios; with the Sapienz tool, FBlearner, and canary testing. We then discuss the development of our techniques.
+
+The first area of deployment is alongside the Sapienz tool, which
+has been integrated alongside Facebook's production development process Phabricator~\citep{Facebook1} to help identify faults. Accordingly, our methods could be integrated alongside Sapienz to help detect fixes made as a consequence of testing. 
+The second area of deployment is alongside FBLearner, a Machine Learning (ML) platform through which most of Facebook's ML work is conducted. In FBlearner there is an existing fix detection workflow stage~\citep{Facebook1}, which involves using reinforcement learning to learn to classify faults and fixes. Accordingly, our methods could be integrated in the fix classification stage. 
+The third area of deployment is alongside Facebook's canary testing/rolling deployment process for mobile devices. Canary releasing slowly rolls out changes to a small subset of users before rolling it out to the entire infrastructure. Facebook uses a strategy with multiple canaries (versions)~\cite{7883285,canaryrelease}.
+In practice, data about different canaries could be used to form part of the dataset used for our fix detection methods. Namely, if an update is deployed in one cluster but not another, we will have important data about which failures are caused by which updates and for which methods. 
+

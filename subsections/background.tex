@@ -1,0 +1,20 @@
+Any solution to AFDP is expected to be a function of a failure's symptoms, such as stack traces and user/test reports. In large scale industrial projects, where software is developed using continual integration and deployment in conjunction with automatic verification and validation (V\&V), the need to solve this ``largely overlooked" problem is especially acute~\cite{Facebook1}.
+This problem has recently been decomposed by Alshahwan \etal  into two subproblems: 
+
+\begin{itemize}
+\item  \emph{Failure grouping}, which associates groups of failures to the methods which generate them, and 
+
+\item \emph{Proving a negative}, which determines when we can be confident failures will not recur (i.e. a fix has succeeded). 
+\end{itemize}
+
+We take up the challenge of solving these sub-problems. To group failures, we investigate methods of causal inference to assign each failure a root cause (WP1).  To prove a negative, we will investigate statistical change point detection methods to detect when a fix has succeeded in the presence of flaky tests (WP2). Combined, these offer a novel solution to the fix detection problem which is at once scalable and integratable into Industrial development process (WP3). 
+
+Finally, solving AFDP facilitates the solution of a related problem which we describe as finding useful \textit{Fix-classifications and statistics}. Solution to this is critical at the software managerial level for determining areas for software development in the short term furture, providing a high-level description of how and what fixed have occurred dynamically over time (WP4).  We decompose this problem into two sub-problems:
+
+\begin{itemize}
+\item \textit{Fix-classification}, where fixes are put into a class which describes the fix. This can include fixes which solve an environmental or a resource dependent problem.
+
+\item \textit{Fix statistics}, which describe the evolution of fixes over time.
+\end{itemize}
+
+Solution to the four problems thus provides, for any large scale software project, answers to four respective questions: which fixes have fixed which failures, which methods can be said to be fixed, what class of problem did the fixes fix, and how have fixes evolved. This gives us a comprehensive and automated treatment for understanding the evolution of fixed code, which in an implemented tool, will provide critical high level understanding of code for program managers. 

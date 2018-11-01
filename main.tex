@@ -1,0 +1,119 @@
+\documentclass[12pt, twocolumn]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{titling}
+\usepackage{titlesec}
+
+\usepackage[autostyle]{csquotes}
+\usepackage{pgfgantt}
+\raggedbottom
+\titlespacing*{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
+\titlespacing*{\subsection}{0pt}{0.5\baselineskip}{0.5\baselineskip}
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\small\bfseries}
+\usepackage{hyperref}
+\usepackage{calc}
+\newlength{\myunitx}
+\newlength{\autosizewidth}
+\setlength{\autosizewidth}{\textwidth} % this allows you to change the value for autosizing
+\newcommand*{\timeslots}{}
+\ganttset{%
+timeslots/.code args={#1,#2}{\setlength{\myunitx}{(\autosizewidth-\widthof{#2}-1em)/#1}
+                 \renewcommand{\timeslots}{#1}\pgfkeys{pgfgantt/x unit=\myunitx}}
+}
+
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+\usepackage[a4paper,margin=2cm,footskip=1.5cm]{geometry}
+\usepackage{xspace}
+\usepackage{fancyvrb}
+\usepackage{lipsum}
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+% Hyperref settings
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Section}
+\def\subsubsectionautorefname{Section}
+
+%% user defined macros
+\newcommand{\project}{AFD}
+\newcommand{\targetlanguage}{TypeScript}
+\newcommand{\wptotal}{five}
+
+
+
+% English
+\newcommand{\cf}{\hbox{\emph{cf.}}\xspace}
+\newcommand{\deletia}{\ldots [deletia] \ldots}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.}}\xspace}
+\newcommand{\scil}{\hbox{\emph{sc.}}\xspace}
+\newcommand{\st}{\hbox{\emph{s.t.}}\xspace}
+\newcommand{\wrt}{\hbox{\emph{w.r.t.}}\xspace}
+\newcommand{\etc}{\hbox{\emph{etc.}}\xspace}
+\newcommand{\viz}{\hbox{\emph{viz.}}\xspace}
+
+\newcommand{\todo}[1]{{\color{red}#1}}
+\newcommand{\dl}[1]{\todo{For DL: #1}}
+\newcommand{\eb}[1]{\todo{For Earl: #1}}
+
+%% this is still a placeholder title
+\title{Automatic Fix Detection} 
+
+\author{David Landsberg \and Earl Barr}%
+
+
+\date{%
+}
+
+%% document begins here
+\begin{document}
+
+\maketitle{}
+
+\section{Executive Summary}
+    \input{subsections/executive_summary.tex} 
+
+\section{Background and Context}
+    \input{subsections/background.tex}
+
+\section{Project Structure and Methodology}
+    \input{subsections/methodology.tex}
+    \input{figures/gantt.tex}
+
+\subsection*{WP1: Failure Grouping}
+    \input{subsections/wps/wp1.tex}
+
+ 
+
+
+\subsection*{WP2: Proving a negative}
+    \input{subsections/wps/wp2.tex}
+
+\subsection*{WP3: Tool Deployment} %% \todo{possibly merge with WP2}
+    \input{subsections/wps/wp3.tex}
+
+%\subsection*{WP4: Fix Classification}
+ %   \input{subsections/wps/wp4.tex}
+
+\subsection*{WP4: Taking Stock of your Software}
+    \input{subsections/wps/wp4.tex} 
+
+\section{Resources and Management}
+    \input{subsections/resources.tex}
+
+\section{Timeliness and Novelty}
+    \input{subsections/novelty.tex}
+
+\section{Academic Impact}
+    \input{subsections/impact.tex}
+
+\section{National Importance}
+    \input{subsections/importance.tex}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-bibliography}
+
+\end{document}

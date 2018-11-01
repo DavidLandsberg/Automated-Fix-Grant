@@ -1,0 +1,21 @@
+\begin{figure*}
+    \noindent\resizebox{\textwidth}{!}{%
+    \begin{ganttchart}
+        [   vgrid, 
+            hgrid,
+            time slot format=isodate-yearmonth,
+            compress calendar,
+            group label font=\tiny ] {2018-10}{2021-10} 
+
+        % \gantttitle{\project{} Work Flow}{12}\\
+        \gantttitlecalendar{year, month}\\
+        \ganttbar[bar/.append style={fill=blue}]{WP1: Failure Grouping}{2018-10}{2019-12}\\
+        \ganttlinkedbar[bar/.append style={fill=red}]{WP2: Proving a Negative}{2019-04}{2020-04}\\
+      %  \ganttlinkedbar[bar/.append style={fill=yellow}]{WP3: Fix Classification}{2019-12}{2020-12}\\
+        \ganttlinkedbar[bar/.append style={fill=green}]{WP4: Taking Stock of Software}{2020-05}{2021-06}\\
+         \ganttlinkedbar[bar/.append style={fill=cyan}]{WP4: Tool \& Deployment}{2020-10}{2021-10}
+    \end{ganttchart}}
+\caption{Expected Work flow for \project{}}
+\label{fig:gantt}
+\end{figure*}
+

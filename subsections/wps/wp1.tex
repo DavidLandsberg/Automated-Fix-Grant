@@ -1,0 +1,40 @@
+
+The failure grouping problem (FGP) is that of grouping failures to their likely causes (here assumed to be methods). Being able to tell which failures a method causes is key to being able to tell whether it is fixed.
+ Thus far, a cutting edge method used in industry (namely, Facebook) by Alshahwan \etal is to use method identifiers (located at the top of stack traces) as the heuristic for grouping.
+However, the designers of this technique propose this solution would be improved upon by applying techniques of causal inference.
+They write "there has been much recent progress on causal inference \cite{Pearl} ... Therefore, the opportunity seems ripe for the further
+development and exploitation of causal analysis as one technique for informing and understanding fix detection"~\cite{Facebook1}.
+
+We take up the challenge left by Alshahwan \etal . For WP1, we propose to investigate different causal theories to solve the FGP. Here, we begin our development with 
+the probabilistic measure of
+causality due to Pearl~\cite{pearl2009,pearl2016causal}. We pick this particular theory because (as we shall see) there are simple and low-cost ways to estimate the value of the formula, and it opens the window to a number of different (potentially better) theories of causality.
+Here, $C$ is a cause of the event $E$ when the following obtains:
+
+\vspace*{-4.0mm}
+
+\begin{equation}
+    Pr(E | \mathit{do}(C)) > Pr(E | \mathit{do}(\neg C))
+    \label{eq:pearl}
+\end{equation}
+
+The intuition is that causes raise the probability of their effects. 
+Applied to FGP, we parse \autoref{eq:pearl} as follows:  $Pr(X|Y)$ reads "the
+probability of $X$ given $Y$", $E$ is an event of a failure, and $C$ is the introduction of a given patch into the given
+codebase. The operation $\mathit{do}(C)$ 
+represents an external intervention that compels $C$ to obtain, whilst holding certain background factors fixed (in our case this is the rest of the codebase --- see Pearl for technical details~\cite{pearl2009}). Intuitively
+then, $Pr(E | do(C))$ measures the probability that a
+failure occurs upon the introduction of a given patch. Accordingly,
+\autoref{eq:pearl} says that a
+patch is a cause of the failure if the likelihood of the failure would have decreased had the patch not been introduced into the program.
+
+A major question for our research is to estimate $Pr(E | do(C))$ and $ Pr(E |
+do(\neg C))$. As a starting point, we envisage conducting a controlled experiment. Here, we assume i) we have a program together with its updated version, ii) that the updated version only differs from the original by a patch $C$, iii) that there is only one bug in the codebase, and iv) a fix for the bug repairs the method, and v) there is a test available  which can be run on both versions a given number of times  (in real-world testing scenarios we will not have to make all of these assumptions --- see~\autoref{sec:deployment}). Here, we propose $Pr(E|do(C))$  is estimated by the proportion of times the test results in failure in the updated version, and $Pr(E|do(\neg C))$  as the
+proportion of times the test results in failure in the non-updated version. Note that the estimated probabilities might assume values anywhere in the interval $[0,1]$ --- depending on the presence of noise, indeterminism, flaky tests, and degree of unspecified behaviour. Accordingly, if \autoref{eq:pearl} holds, we say the method causes the given failure in that update for that test, thereby grouping the failure to the associated method as its cause. 
+
+Pearl's theory is not enough. 
+It is not guaranteed to handle (what Alshahawan calls) \textit{false grouping}~\cite{Facebook1}.
+Accordingly, \autoref{eq:pearl} may include too many (or too few) causes in practice. To investigate this, we propose 
+experimenting with different measures for the \textit{degree of causality} (which in our context may be said to measure \textit{error-causing degree}), such as $Pr(E | do(C)) - Pr(E | do(\neg C))$ and $Pr(E | do(C))/Pr(E | do(\neg C))$~\cite{pearl2009}, and saying causality obtains when the value given by the measure is over a given bound.  
+Previous research has confirmed that different measures of causality perform very differently~\cite{eval}, suggesting a requirement to experiment with many different measures from the literature on A.I., fault localisation, and philosophy of science, of which there are hundreds~\cite{eval}.  
+
+To summarise this WP, we propose investigating causal theories to solve FGP. A starting point is Pearl's theories, and different measures of causality must be examined, developed, and experimented upon to find one fit for purpose. 
