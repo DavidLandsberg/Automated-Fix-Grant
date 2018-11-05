@@ -1,5 +1,5 @@
-Any solution to AFDP is expected to be a function of a failure's symptoms, such as stack traces and user/test reports. In large scale industrial projects, where software is developed using continual integration and deployment in conjunction with automatic verification and validation (V\&V), the need to solve this ``largely overlooked" problem is especially acute~\cite{Facebook1}.
-This problem has recently been decomposed by Alshahwan \etal  into two subproblems: 
+Any solution to AFDP is expected to be a function of a failure's symptoms, such as stack traces and user/test reports. In large scale industrial projects, where software is developed using continual integration and deployment in conjunction with automatic verification and validation (V\&V), the need to solve this ``largely overlooked" problem is especially acute~\cite{Facebook1}. This is due to the existence of flaky tests, which are tests which could fail or pass for the same inputs over the program, but do not always indicate bugs in the code.
+This problem of ADFP, in the light of flaky tests, has recently been decomposed by Alshahwan \etal  into two subproblems: 
 
 \begin{itemize}
 \item  \emph{Failure grouping}, which associates groups of failures to the methods which generate them, and 

@@ -1,8 +1,10 @@
-When a series of fixes have been integrated into the codebase, software managers want to know several additional things about their managed code. This includes answers to questions like, how stable is the development of the code, and what's the rate of improvement?
-Following the work done in WP1 and WP2, we will have sufficient statistical apparatus to present a time series describing the evolution of a piece of software over time in terms of its continual error causing propensity. 
 
-Accordingly, 
-we are in a position to begin describing elementary statistics about the evolution of a software project. Investigating which of these statistics will be useful from the standpoint of a software manager, and developing these statistics, will be the first sub-project of WP4. 
-This includes finding appropriate measures for rates of code improvement and code stability. 
+We will implement our tool in a usable piece of software which can be integrated in several different scenarios. 
+We first discuss three integration scenarios; with the Sapienz tool, FBlearner, and canary testing. We then discuss the development of our techniques.
 
-A second sub-problem involves correctly classifying the problem that a given fix has fixed. This involves error classification. Errors can be classified into many different classes. Common classes are environmental, syntax, logical. In this WP, we thus need to explore taxonomies/ontologies of errors which are fixed, and automatic methods to identify what type of bug a fix has actually fixed. Solution to this problem can involve test mining engineering reports, or testing of the program before and after the given fix. 
+The first area of deployment is alongside the Sapienz tool, which
+has been integrated alongside Facebook's production development process Phabricator~\citep{Facebook1} to help identify faults. Accordingly, our methods could be integrated alongside Sapienz to help detect fixes made as a consequence of testing. 
+The second area of deployment is alongside FBLearner, a Machine Learning (ML) platform through which most of Facebook's ML work is conducted. In FBlearner there is an existing fix detection workflow stage~\citep{Facebook1}, which involves using reinforcement learning to learn to classify faults and fixes. Accordingly, our methods could be integrated in the fix classification stage. 
+The third area of deployment is alongside Facebook's canary testing/rolling deployment process for mobile devices. Canary releasing slowly rolls out changes to a small subset of users before rolling it out to the entire infrastructure. Facebook uses a strategy with multiple canaries (versions)~\cite{7883285,canaryrelease}.
+In practice, data about different canaries could be used to form part of the dataset used for our fix detection methods. Namely, if an update is deployed in one cluster but not another, we will have important data about which failures are caused by which updates and for which methods. 
+
